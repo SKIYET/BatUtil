@@ -108,7 +108,7 @@ if %_Debug% equ 0 (
 
 :Begin
 title Virtual Editions %uivr%
-set "vEditions=Enterprise,Education,ProfessionalEducation,ProfessionalWorkstation,EnterpriseN,EducationN,ProfessionalEducationN,ProfessionalWorkstationN,CoreSingleLanguage,ServerRdsh,IoTEnterprise,IoTEnterpriseS"
+set "vEditions=Enterprise,Education,ProfessionalEducation,ProfessionalWorkstation,EnterpriseN,EducationN,ProfessionalEducationN,ProfessionalWorkstationN,CoreSingleLanguage,ProfessionalCountrySpecific,ProfessionalSingleLanguage,ServerRdsh,IoTEnterprise,IoTEnterpriseS"
 set ERRORTEMP=
 set _all=0
 set _dir=0
