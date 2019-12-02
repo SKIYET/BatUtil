@@ -274,8 +274,8 @@ if %Enterprise% equ 0 echo. 1. Enterprise
 if %Education% equ 0 echo. 2. Education
 if %ProfessionalEducation% equ 0 echo. 3. Pro Education
 if %ProfessionalWorkstation% equ 0 echo. 4. Pro for Workstations
-if %ProfessionalCountrySpecific% equ 0 echo. 5. Pro Education
-if %ProfessionalSingleLanguage% equ 0 echo. 6. Pro for Workstations
+if %ProfessionalCountrySpecific% equ 0 echo. 5. Pro China Only
+if %ProfessionalSingleLanguage% equ 0 echo. 6. Pro Single Language
 )
 if %EditionProN% equ 1 (
 if %EnterpriseN% equ 0 echo. 7. Enterprise N
