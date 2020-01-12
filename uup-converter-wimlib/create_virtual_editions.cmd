@@ -504,7 +504,7 @@ type nul>bin\temp\virtual.txt
 wimlib-imagex.exe update ISOFOLDER\sources\temp.wim %index% < bin\temp\virtual.txt %_Const%
 rmdir /s /q bin\temp\
 echo.
-wimlib-imagex.exe info ISOFOLDER\sources\temp.wim %index% --image-property WINDOWS/EDITIONID=%EditionID% --image-property FLAGS=%EditionID% --image-property DISPLAYNAME="Windows 10 %desc%" --image-property DISPLAYDESCRIPTION="Windows 10 %desc%"
+wimlib-imagex.exe info ISOFOLDER\sources\temp.wim %index% --image-property WINDOWS/EDITIONID="%EditionID%" --image-property NAME="Windows 10 %desc%" --image-property DESCRIPTION="Windows 10 %desc%" --image-property FLAGS="%EditionID%" --image-property DISPLAYNAME="%dname%" --image-property DISPLAYDESCRIPTION="%ddesc%"
 echo.
 set modified=1
 exit /b
@@ -518,6 +518,12 @@ echo Rebuilding %WimFile% . . .
 echo %line%
 echo.
 wimlib-imagex.exe optimize ISOFOLDER\sources\%WimFile% %_Supp%
+wimlib-imagex.exe info ISOFOLDER\sources\install.wim 1 --image-property NAME="Windows 10 Home" --image-property DESCRIPTION="Windows 10 Home" --image-property FLAGS="Core" --image-property DISPLAYNAME="Windows 10 家庭版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭版"
+wimlib-imagex.exe info ISOFOLDER\sources\install.esd 1 --image-property NAME="Windows 10 Home" --image-property DESCRIPTION="Windows 10 Home" --image-property FLAGS="Core" --image-property DISPLAYNAME="Windows 10 家庭版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭版"
+wimlib-imagex.exe info ISOFOLDER\sources\install.wim 2 --image-property NAME="Windows 10 Home China" --image-property DESCRIPTION="Windows 10 Home China" --image-property FLAGS="CoreCountrySpecific" --image-property DISPLAYNAME="Windows 10 家庭中文版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭中文版"
+wimlib-imagex.exe info ISOFOLDER\sources\install.esd 2 --image-property NAME="Windows 10 Home China" --image-property DESCRIPTION="Windows 10 Home China" --image-property FLAGS="CoreCountrySpecific" --image-property DISPLAYNAME="Windows 10 家庭中文版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭中文版"
+wimlib-imagex.exe info ISOFOLDER\sources\install.wim 3 --image-property NAME="Windows 10 Pro" --image-property DESCRIPTION="Windows 10 Pro" --image-property FLAGS="Professional" --image-property DISPLAYNAME="Windows 10 专业版" --image-property DISPLAYDESCRIPTION="Windows 10 专业版"
+wimlib-imagex.exe info ISOFOLDER\sources\install.esd 3 --image-property NAME="Windows 10 Pro" --image-property DESCRIPTION="Windows 10 Pro" --image-property FLAGS="Professional" --image-property DISPLAYNAME="Windows 10 专业版" --image-property DISPLAYDESCRIPTION="Windows 10 专业版"
 if %DeleteSource% equ 1 (
 call :dPREPARE
 )
@@ -703,6 +709,8 @@ exit /b
 if %_build% lss 18298 exit /b
 set "EditionID=%1"
 set "desc=IoT Enterprise LTSC"
+set "dname=Windows 10 IoT 企业版 LTSC"
+set "ddesc=Windows 10 IoT 企业版 LTSC"
 set "source=%IndexLTSC%"
 call :WIM
 exit /b
@@ -717,6 +725,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0039003900390039003
 set "Print=1"
 set "Insecure=0"
 set "desc=Pro Single Language"
+set "dname=Windows 10 专业单语言版"
+set "ddesc=Windows 10 专业单语言版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -731,6 +741,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0039003900390039003
 set "Print=1"
 set "Insecure=0"
 set "desc=Pro China Only"
+set "dname=Windows 10 专业仅中文版"
+set "ddesc=Windows 10 专业仅中文版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -746,6 +758,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003400330036003
 set "Print=1"
 set "Insecure=0"
 set "desc=IoT Enterprise"
+set "dname=Windows 10 IoT 企业版"
+set "ddesc=Windows 10 IoT 企业版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -760,6 +774,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003400330032003
 set "Print=1"
 set "Insecure=0"
 set "desc=Enterprise for Virtual Desktops"
+set "dname=适用于虚拟桌面的 Windows 10 企业版"
+set "ddesc=适用于虚拟桌面的 Windows 10 企业版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -774,6 +790,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300320039003
 set "Print=1"
 set "Insecure=0"
 set "desc=Enterprise"
+set "dname=Windows 10 企业版"
+set "ddesc=Windows 10 企业版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -788,6 +806,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300320038003
 set "Print=1"
 set "Insecure=0"
 set "desc=Education"
+set "dname=Windows 10 教育版"
+set "ddesc=Windows 10 教育版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -802,6 +822,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300380030003
 set "Print=0"
 set "Insecure=1"
 set "desc=Pro Education"
+set "dname=Windows 10 专业教育版"
+set "ddesc=Windows 10 专业教育版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -816,6 +838,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300390031003
 set "Print=0"
 set "Insecure=1"
 set "desc=Pro for Workstations"
+set "dname=Windows 10 专业工作站版"
+set "ddesc=Windows 10 专业工作站版"
 set "source=%IndexPro%"
 call :WIM
 exit /b
@@ -830,6 +854,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300320039003
 set "Print=1"
 set "Insecure=0"
 set "desc=Enterprise N"
+set "dname=Windows 10 企业版 N"
+set "ddesc=Windows 10 企业版 N"
 set "source=%IndexProN%"
 call :WIM
 exit /b
@@ -844,6 +870,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300320038003
 set "Print=1"
 set "Insecure=0"
 set "desc=Education N"
+set "dname=Windows 10 教育版 N"
+set "ddesc=Windows 10 教育版 N"
 set "source=%IndexProN%"
 call :WIM
 exit /b
@@ -858,6 +886,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300380030003
 set "Print=0"
 set "Insecure=1"
 set "desc=Pro Education N"
+set "dname=Windows 10 专业教育版 N"
+set "ddesc=Windows 10 专业教育版 N"
 set "source=%IndexProN%"
 call :WIM
 exit /b
@@ -872,6 +902,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300390032003
 set "Print=0"
 set "Insecure=1"
 set "desc=Pro N for Workstations"
+set "dname=Windows 10 专业工作站版 N"
+set "ddesc=Windows 10 专业工作站版 N"
 set "source=%IndexProN%"
 call :WIM
 exit /b
@@ -886,6 +918,8 @@ set "DigitalProductId4=F804000004000000350035003000340031002D0030003300320037003
 set "Print=0"
 set "Insecure=1"
 set "desc=Home Single Language"
+set "dname=Windows 10 家庭单语言版"
+set "ddesc=Windows 10 家庭单语言版"
 set "source=%IndexHome%"
 call :WIM
 exit /b
