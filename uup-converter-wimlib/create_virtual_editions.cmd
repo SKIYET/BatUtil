@@ -295,7 +295,7 @@ if %EditionLTSC% equ 1 (
 if %IoTEnterpriseS% equ 0 if %_build% geq 18298 echo 12. IoT Enterprise LTSC {OEM}
 )
 if %EditionPro% equ 1 (
-if %EnterpriseG% equ 0 echo. 13. Enterprise Government
+if %EnterpriseG% equ 0 echo. 13. Enterprise Government (Do NOT Select)
 if %ProfessionalCountrySpecific% equ 0 echo. 14. Pro China Only {OEM}
 if %ProfessionalSingleLanguage% equ 0 echo. 15. Pro Single Language {OEM}
 )
@@ -521,13 +521,10 @@ echo %line%
 echo Rebuilding %WimFile% . . .
 echo %line%
 echo.
+wimlib-imagex.exe info ISOFOLDER\sources\%WimFile% 1 --image-property NAME="Windows 10 Home" --image-property DESCRIPTION="Windows 10 Home" --image-property FLAGS="Core" --image-property DISPLAYNAME="Windows 10 家庭版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭版"
+wimlib-imagex.exe info ISOFOLDER\sources\%WimFile% 2 --image-property NAME="Windows 10 Home China" --image-property DESCRIPTION="Windows 10 Home China" --image-property FLAGS="CoreCountrySpecific" --image-property DISPLAYNAME="Windows 10 家庭中文版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭中文版"
+wimlib-imagex.exe info ISOFOLDER\sources\%WimFile% 3 --image-property NAME="Windows 10 Pro" --image-property DESCRIPTION="Windows 10 Pro" --image-property FLAGS="Professional" --image-property DISPLAYNAME="Windows 10 专业版" --image-property DISPLAYDESCRIPTION="Windows 10 专业版"
 wimlib-imagex.exe optimize ISOFOLDER\sources\%WimFile% %_Supp%
-wimlib-imagex.exe info ISOFOLDER\sources\install.wim 1 --image-property NAME="Windows 10 Home" --image-property DESCRIPTION="Windows 10 Home" --image-property FLAGS="Core" --image-property DISPLAYNAME="Windows 10 家庭版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭版"
-wimlib-imagex.exe info ISOFOLDER\sources\install.esd 1 --image-property NAME="Windows 10 Home" --image-property DESCRIPTION="Windows 10 Home" --image-property FLAGS="Core" --image-property DISPLAYNAME="Windows 10 家庭版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭版"
-wimlib-imagex.exe info ISOFOLDER\sources\install.wim 2 --image-property NAME="Windows 10 Home China" --image-property DESCRIPTION="Windows 10 Home China" --image-property FLAGS="CoreCountrySpecific" --image-property DISPLAYNAME="Windows 10 家庭中文版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭中文版"
-wimlib-imagex.exe info ISOFOLDER\sources\install.esd 2 --image-property NAME="Windows 10 Home China" --image-property DESCRIPTION="Windows 10 Home China" --image-property FLAGS="CoreCountrySpecific" --image-property DISPLAYNAME="Windows 10 家庭中文版" --image-property DISPLAYDESCRIPTION="Windows 10 家庭中文版"
-wimlib-imagex.exe info ISOFOLDER\sources\install.wim 3 --image-property NAME="Windows 10 Pro" --image-property DESCRIPTION="Windows 10 Pro" --image-property FLAGS="Professional" --image-property DISPLAYNAME="Windows 10 专业版" --image-property DISPLAYDESCRIPTION="Windows 10 专业版"
-wimlib-imagex.exe info ISOFOLDER\sources\install.esd 3 --image-property NAME="Windows 10 Pro" --image-property DESCRIPTION="Windows 10 Pro" --image-property FLAGS="Professional" --image-property DISPLAYNAME="Windows 10 专业版" --image-property DISPLAYDESCRIPTION="Windows 10 专业版"
 if %DeleteSource% equ 1 (
 call :dPREPARE
 )
